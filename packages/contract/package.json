@@ -1,0 +1,21 @@
+{
+  "name": "@ds-guard/contract",
+  "version": "0.1.0",
+  "description": "Extracts a DS Guard contract from an installed design-system package, at the version resolved in the lockfile.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ds-guard/core": "workspace:*",
+    "typescript": "5.9.3",
+    "yaml": "^2.8.1"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@ds-guard/cli",
+  "version": "0.1.0",
+  "description": "DS Guard: design-system compliance for React + TypeScript. Local, offline.",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "react",
+    "typescript",
+    "accessibility",
+    "lint",
+    "compliance",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnaudPerrillat/ds-guard.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/ArnaudPerrillat/ds-guard#readme",
+  "bugs": "https://github.com/ArnaudPerrillat/ds-guard/issues",
+  "type": "module",
+  "bin": {
+    "ds-guard": "./dist/cli.js"
+  },
+  "main": "./dist/api.js",
+  "types": "./dist/api.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/api.d.ts",
+      "default": "./dist/api.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "tsup"
+  },
+  "dependencies": {
+    "postcss": "8.5.6",
+    "postcss-scss": "4.0.9",
+    "typescript": "5.9.3",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@ds-guard/contract": "workspace:*",
+    "@ds-guard/core": "workspace:*"
+  }
+}

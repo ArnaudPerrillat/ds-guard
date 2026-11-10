@@ -1,0 +1,16 @@
+{
+  "name": "@ds-guard/github-action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Non-blocking GitHub Action: comments DS Guard findings on pull requests.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@ds-guard/cli": "workspace:*"
+  }
+}

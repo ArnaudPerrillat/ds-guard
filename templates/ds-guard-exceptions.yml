@@ -1,0 +1,45 @@
+# Weekly review of intentional exceptions. Copy to .github/workflows/ds-guard-exceptions.yml.
+# Opens or updates one "DS Guard: exceptions to review" issue listing the exceptions that are
+# expired or expire within 14 days, and assigns their owners (GitHub users; "@org/team" owners
+# are mentioned). Closes the issue when nothing is due. Never fails anything: advisory only.
+name: DS Guard exceptions
+on:
+  schedule:
+    - cron: '0 7 * * 1' # Mondays, 07:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    # defaults: { run: { working-directory: apps/web } }   # where ds-guard.config.json lives
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci
+      - name: List exceptions to review
+        run: npx ds-guard exceptions --within 14 --format json > "$RUNNER_TEMP/exceptions.json"
+      - name: Open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          f="$RUNNER_TEMP/exceptions.json"
+          jq -r .issue.body "$f" > "$RUNNER_TEMP/body.md"
+          gh label create ds-guard-exceptions --color FBCA04 --description "DS Guard: exceptions to review" 2>/dev/null || true
+          number=$(gh issue list --label ds-guard-exceptions --state open --json number --jq '.[0].number // empty')
+          if [ "$(jq -r .issue.due "$f")" = 0 ]; then
+            if [ -n "$number" ]; then gh issue close "$number" --comment "No exception expires within 14 days."; fi
+            exit 0
+          fi
+          if [ -n "$number" ]; then
+            gh issue edit "$number" --body-file "$RUNNER_TEMP/body.md"
+          else
+            url=$(gh issue create --title "$(jq -r .issue.title "$f")" --label ds-guard-exceptions --body-file "$RUNNER_TEMP/body.md")
+            number=${url##*/}
+          fi
+          for a in $(jq -r '.issue.assignees[]' "$f"); do
+            gh issue edit "$number" --add-assignee "$a" || echo "::notice::Could not assign $a (not a collaborator?)"
+          done

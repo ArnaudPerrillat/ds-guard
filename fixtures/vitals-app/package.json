@@ -1,0 +1,8 @@
+{
+  "name": "vitals-app",
+  "private": true,
+  "dependencies": {
+    "@vitals/tokens": "^2.0.0",
+    "@vitals/ui": "^3.1.0"
+  }
+}

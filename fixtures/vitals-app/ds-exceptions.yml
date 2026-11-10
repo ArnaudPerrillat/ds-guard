@@ -1,0 +1,12 @@
+exceptions:
+  - id: EXC-001
+    rules: [no-hardcoded-spacing]
+    reason: The welcome banner uses an off-scale spacing validated in design review.
+    owner: "@care-journey"
+    expires: 2027-03-31
+  - id: EXC-002
+    rules: [no-hardcoded-spacing, no-hardcoded-color]
+    reason: Legacy billing module, rewritten in Q2.
+    owner: "@billing"
+    expires: 2026-12-01
+    files: ["src/legacy/**"]

@@ -1,0 +1,7 @@
+{
+  "name": "pulse-app",
+  "private": true,
+  "dependencies": {
+    "@pulse/ui": "^2.0.0"
+  }
+}

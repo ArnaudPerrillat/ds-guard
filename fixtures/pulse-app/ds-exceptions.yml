@@ -1,0 +1,6 @@
+exceptions:
+  - id: EXC-001
+    rules: [no-hardcoded-color]
+    reason: Chart palette from the data-viz library, pending DS chart tokens.
+    owner: "@insights"
+    expires: 2027-06-30

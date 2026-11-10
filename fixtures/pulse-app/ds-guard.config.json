@@ -1,0 +1,4 @@
+{
+  "designSystems": [{ "package": "@pulse/ui" }],
+  "include": ["src/**/*.{tsx,ts,css}"]
+}

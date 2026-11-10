@@ -1,0 +1,30 @@
+name: DS Guard
+description: Design-system compliance on pull requests. Comments findings on changed lines; blocks only on accessibility.
+branding:
+  icon: check-square
+  color: green
+inputs:
+  working-directory:
+    description: Root of the React app (where ds-guard.config.json lives).
+    default: .
+  github-token:
+    description: Token used to post the PR comment.
+    default: ${{ github.token }}
+  fail-on:
+    description: "blocking (default: fail only on blocking findings, accessibility unless configured) or never."
+    default: blocking
+  comment:
+    description: Post or update a PR comment (true/false). The job summary is always written.
+    default: 'true'
+outputs:
+  explained-coverage:
+    description: Explained coverage, 0-100.
+  conformance:
+    description: Conformance, 0-100.
+  findings:
+    description: Open findings on changed lines.
+  blocking:
+    description: Blocking findings on changed lines.
+runs:
+  using: node24
+  main: action/index.cjs

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+*.log
+.DS_Store
+.env
+.env.*
+spike/fixtures/
+spike/out/
+
+# Committed test fixtures with a fake installed design system
+!fixtures/**/node_modules/
+
+# Bundled GitHub Action (GitHub runs it from the repository)
+!action/

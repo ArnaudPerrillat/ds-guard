@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "@pulse/ui/theme.css";
+
+/* App-level additions to the theme are allowed. */
+@theme {
+  --color-chart-1: #2e7d32;
+}
+
+.legacy-panel {
+  @apply p-[13px] bg-[#ffffff] rounded-card;
+}

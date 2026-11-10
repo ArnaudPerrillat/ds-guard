@@ -1,0 +1,28 @@
+name: Release
+# Push a tag such as v0.1.0: builds, tests, packs the CLI and attaches the tarball to a GitHub release.
+# npm publishing stays a manual step (see README, "Releasing").
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm test
+      - name: Tag matches the CLI version
+        run: test "v$(node -p "require('./packages/cli/package.json').version")" = "$GITHUB_REF_NAME"
+      - run: pnpm pack --pack-destination "$RUNNER_TEMP"
+        working-directory: packages/cli
+      - run: gh release create "$GITHUB_REF_NAME" "$RUNNER_TEMP"/ds-guard-cli-*.tgz --title "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}

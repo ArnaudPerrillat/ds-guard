@@ -1,0 +1,1 @@
+{"name":"ds-guard-spike","private":true,"type":"module","scripts":{"analyze":"node analyze.ts fixtures/docs-app fixtures/ds"},"dependencies":{"@types/react":"^19.3.0","postcss":"8.5.6","postcss-scss":"4.0.9","typescript":"5.9.3"}}

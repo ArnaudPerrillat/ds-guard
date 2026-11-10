@@ -1,0 +1,4 @@
+{
+  "designSystems": [{ "package": "@vitals/ui", "tokens": ["@vitals/tokens/tokens.json"] }],
+  "include": ["src/**/*.{tsx,jsx,ts,js,css,scss}"]
+}
