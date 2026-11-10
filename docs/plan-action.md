@@ -41,7 +41,7 @@ Où on en est (9 novembre 2026) : depuis l'archive `npm pack`, `init` puis `scan
 Les signaux d'usage réels remplacent les entretiens.
 
 - [x] Relire `docs/` et retirer les formulations personnelles et les références à des entreprises réelles prises comme cibles avant de rendre le dépôt public.
-- [ ] Historique Git public sans ces mentions (choix de méthode en attente).
+- [x] Historique Git public sans ces mentions : un seul commit de départ, auteur en adresse noreply GitHub.
 - [x] Paquet CLI prêt pour npm (métadonnées, licence, `files`) et workflow de release ; section « Privacy » dans le README et test qui vérifie qu'un scan ne fait aucun accès réseau.
 - [ ] Vérifier les noms, créer les dépôts GitHub, pousser, ouvrir les six PR de démo, publier sur npm (après accord et périmètre final).
 - [ ] Publier en open source, avec une vidéo de 3 minutes.
