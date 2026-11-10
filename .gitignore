@@ -11,6 +11,7 @@ spike/out/
 
 # Committed test fixtures with a fake installed design system
 !fixtures/**/node_modules/
+!fixtures/**/node_modules/**/dist/
 
 # Bundled GitHub Action (GitHub runs it from the repository)
 !action/
